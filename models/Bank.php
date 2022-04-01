@@ -5,27 +5,26 @@ namespace app\models;
 use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "users".
+ * This is the model class for table "banks".
  *
  * @property int $id
- * @property int|null $bank_id
- * @property string|null $full_name
+ * @property string|null $name
  * @property string|null $postal_code
  * @property string|null $province
  * @property string|null $town
  * @property string|null $street
  *
- * @property Bank $bank
  * @property Cheque[] $cheques
+ * @property User[] $users
  */
-class User extends ActiveRecord
+class Bank extends ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'users';
+        return 'banks';
     }
 
     /**
@@ -34,10 +33,8 @@ class User extends ActiveRecord
     public function rules()
     {
         return [
-            [['bank_id'], 'integer'],
-            [['full_name', 'province', 'town', 'street'], 'string', 'max' => 255],
+            [['name', 'province', 'town', 'street'], 'string', 'max' => 255],
             [['postal_code'], 'string', 'max' => 12],
-            [['bank_id'], 'exist', 'skipOnError' => true, 'targetClass' => Bank::class, 'targetAttribute' => ['bank_id' => 'id']],
         ];
     }
 
@@ -48,23 +45,12 @@ class User extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'bank_id' => 'Bank ID',
-            'full_name' => 'Full Name',
+            'name' => 'Name',
             'postal_code' => 'Postal Code',
             'province' => 'Province',
             'town' => 'Town',
             'street' => 'Street',
         ];
-    }
-
-    /**
-     * Gets query for [[Bank]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getBank()
-    {
-        return $this->hasOne(Bank::class, ['id' => 'bank_id']);
     }
 
     /**
@@ -74,6 +60,16 @@ class User extends ActiveRecord
      */
     public function getCheques()
     {
-        return $this->hasMany(Cheque::class, ['user_id' => 'id']);
+        return $this->hasMany(Cheque::class, ['bank_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Users]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsers()
+    {
+        return $this->hasMany(User::class, ['bank_id' => 'id']);
     }
 }

@@ -1,14 +1,11 @@
 <?php
 
 /** @var yii\web\View $this */
+
 /** @var string $content */
 
 use app\assets\AppAsset;
-use app\widgets\Alert;
-use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Html;
-use yii\bootstrap4\Nav;
-use yii\bootstrap4\NavBar;
 
 AppAsset::register($this);
 ?>
@@ -24,57 +21,62 @@ AppAsset::register($this);
 </head>
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
+<div id="app">
 
-<header>
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();
-    ?>
-</header>
+</div>
+<div class="cheque">
+    <div class="cheque__container">
+        <div class="cheque__header">
+            <div class="cheque__header__left">
+                <div class="header__full-name">
+                    Test Test
+                </div>
+                <div class="header__street">
+                    Street main
+                </div>
+                <div class="header__town">
+                    Your town, your province
+                </div>
+                <div class="header__postal-code">
+                    Your town, your province
+                </div>
+            </div>
+            <div class="cheque__header__right">
+                <div class="header__id">
+                    001
+                </div>
+                <div class="header__date">
+                    <div class="date__top">
+                        <span>1</span>
+                        <span>1</span>
+                        <span>0</span>
+                        <span>3</span>
+                        <span>2</span>
+                        <span>0</span>
+                        <span>2</span>
+                        <span>2</span>
+                    </div>
+                    <div class="date__bottom">
+                        <span>D</span>
+                        <span>D</span>
+                        <span>M</span>
+                        <span>M</span>
+                        <span>Y</span>
+                        <span>Y</span>
+                        <span>Y</span>
+                        <span>Y</span>
+                    </div>
+                </div>
+                <div class="header__date__description">
+                    DATE
+                </div>
+            </div>
+        </div>
+        <div class="cheque__body">
 
-<main role="main" class="flex-shrink-0">
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
+        </div>
     </div>
-</main>
-
-<footer class="footer mt-auto py-3 text-muted">
-    <div class="container">
-        <p class="float-left">&copy; My Company <?= date('Y') ?></p>
-        <p class="float-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
-
+</div>
 <?php $this->endBody() ?>
 </body>
 </html>
