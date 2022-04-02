@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use app\services\ChequeService;
+use NumberFormatter;
 use yii\db\ActiveRecord;
 
 /**
@@ -36,11 +38,24 @@ class Cheque extends ActiveRecord
         return [
             [['user_id', 'bank_id'], 'integer'],
             [['memo'], 'string'],
-            [['amount'], 'number'],
+            [['amount'], 'number', 'min' => 0.01],
             [['created_at'], 'safe'],
             [['recipient'], 'string', 'max' => 255],
-            [['bank_id'], 'exist', 'skipOnError' => true, 'targetClass' => Bank::class, 'targetAttribute' => ['bank_id' => 'id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
+            [['amount', 'recipient'], 'required',],
+            [
+                ['bank_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Bank::class,
+                'targetAttribute' => ['bank_id' => 'id']
+            ],
+            [
+                ['user_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => User::class,
+                'targetAttribute' => ['user_id' => 'id']
+            ],
         ];
     }
 
@@ -78,5 +93,18 @@ class Cheque extends ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+    public function getAmountInletter()
+    {
+        $numberFormat = new NumberFormatter("en", NumberFormatter::SPELLOUT);;
+        return $numberFormat->format($this->amount);
+    }
+
+    public function getGeneratedId()
+    {
+        return ChequeService::generateRandomString(3)
+            . ' ' . ChequeService::generateRandomString(5)
+            . ' ' . ChequeService::generateRandomString(10);
     }
 }

@@ -14,6 +14,7 @@ export default {
     data: function () {
         return {
             networkProcessing: false,
+            errors: []
         }
     },
     methods: {
@@ -30,7 +31,11 @@ export default {
             }
             catch(error) {
                 this.networkProcessing = false;
+                this.errors = error.response.data.errors;
             }
         },
+        getErrorMessage(errorArray) {
+            return errorArray.join(' ');
+        }
     },
 }

@@ -36,6 +36,7 @@ class User extends ActiveRecord
         return [
             [['bank_id'], 'integer'],
             [['full_name', 'province', 'town', 'street'], 'string', 'max' => 255],
+            [['full_name', 'town', 'street'], 'required',],
             [['postal_code'], 'string', 'max' => 12],
             [['bank_id'], 'exist', 'skipOnError' => true, 'targetClass' => Bank::class, 'targetAttribute' => ['bank_id' => 'id']],
         ];

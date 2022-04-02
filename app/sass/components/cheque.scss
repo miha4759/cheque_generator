@@ -1,0 +1,227 @@
+.cheque {
+  width: 100%;
+  border: 1px solid #000000;
+  background: url("../../images/cheque_background.jpg");
+  background-repeat: repeat;
+  background-size: 17%;
+  box-shadow: inset 0 0 3em 0 #0000005e;
+  text-align: left;
+
+  .hand-written {
+    font-family: "AlexBrush-Regular";
+    color: #11009f;
+    font-weight: 500;
+    font-size: 2em;
+  }
+
+  &__container {
+    padding: 10px;
+  }
+
+  &__border {
+    padding: 10px 15px;
+    border: 5px dotted #84937f;
+  }
+
+  &__header {
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: 60% 40%;
+
+    .header__full-name {
+      font-size: 1.6em;
+      font-weight: bold;
+      line-height: 1em;
+    }
+    .header__street {
+      line-height: 1em;
+      font-size: 0.9em;
+    }
+    .header__province {
+      line-height: 1em;
+      font-size: 0.9em;
+    }
+
+
+    &__right {
+      display: grid;
+      justify-content: end;
+      grid-template-columns: auto 55% 15%;
+    }
+
+    .header__date {
+      padding-left: 10px;
+      align-self: end;
+
+      &__description {
+        align-self: end;
+      }
+
+      .date__top {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 5px;
+
+        span {
+          text-align: center;
+          padding: 5px;
+          background: #ffffff;
+        }
+      }
+
+      .date__bottom {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 5px;
+
+        span {
+          text-align: center;
+          padding: 5px;
+          font-size: 0.7em;
+        }
+      }
+    }
+
+    .header__id {
+      text-align: right;
+    }
+
+  }
+
+  &__body {
+    padding: 10px 0;
+  }
+
+  &__recipient {
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: 8% 69% 23%;
+
+    .recipient__name {
+      align-self: center;
+      border-bottom: 1px solid #000000;
+      padding: 5px 20px 0;
+      word-break: break-word;
+      line-height: 1em;
+      font-size: 3em;
+    }
+
+    .recipient__description {
+      font-size: 0.9em;
+      line-height: 1em;
+      align-self: center;
+    }
+
+    .recipient__currency {
+      font-weight: bold;
+      font-size: 3em;
+    }
+
+    .recipient__amount {
+      align-self: end;
+      padding-left: 10px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+
+      &__value {
+        background: #ffffff;
+        padding: 5px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+
+  }
+
+  &__amount__inletters {
+    display: grid;
+    justify-content: start;
+    grid-template-columns: 85% auto;
+    padding: 10px 0;
+
+    .inletters {
+      &__value {
+        border-bottom: 1px solid #000000;
+        padding: 5px 20px 0;
+        display: grid;
+        grid-template-columns: minmax(0%, max-content) 1fr;
+        line-height: 1em;
+
+        span.fill {
+          white-space: nowrap;
+          overflow: hidden;
+        }
+      }
+      &__description {
+        align-self: end;
+        padding-left: 10px;
+      }
+    }
+  }
+
+  &__bank {
+    .bank {
+      padding: 10px 0;
+
+      &__name {
+        font-size: 1.6em;
+        font-weight: bold;
+        line-height: 1em;
+      }
+
+      &__address {
+        line-height: 1.3em;
+        font-size: 0.9em;
+      }
+    }
+  }
+
+
+  &__memo {
+    display: grid;
+    grid-template-columns: auto 45% 50%;
+    align-items: end;
+    gap: 10px;
+
+    .memo {
+
+      &__value {
+        border-bottom: 1px solid #000000;
+        padding: 5px 20px 0;
+        word-break: break-word;
+        line-height: 1em;
+      }
+      &__signature {
+        font-family: "SCRIPTIN";
+        border-bottom: 1px solid #000000;
+        padding: 5px 20px;
+        display: inline-grid;
+        justify-content: space-between;
+        grid-template-columns: auto auto;
+        align-items: end;
+        word-break: break-word;
+        line-height: 1em;
+
+        span {
+          font-family: monospace;
+          font-size: 0.5em;
+          color: #000000;
+        }
+      }
+    }
+
+  }
+
+
+  &__footer {
+    background: #ffffff;
+    padding: 5px 25px;
+
+    .cheque__id {
+      font-family: "Micr Encoding";
+      font-size: 3em;
+    }
+  }
+
+}

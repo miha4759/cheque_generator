@@ -34,6 +34,7 @@ class Bank extends ActiveRecord
     {
         return [
             [['name', 'province', 'town', 'street'], 'string', 'max' => 255],
+            [['name', 'town', 'street'], 'required'],
             [['postal_code'], 'string', 'max' => 12],
         ];
     }
