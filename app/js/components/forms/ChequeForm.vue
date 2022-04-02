@@ -226,8 +226,6 @@
         ],
         data() {
             return {
-                userId: null,
-                bankId: null,
                 chequeHtml: null,
 
                 bank: {
@@ -261,8 +259,6 @@
         methods: {
             submit() {
                 const data = {
-                    user_id: this.user_id,
-                    bank_id: this.bankId,
                     bank: this.bank,
                     user: this.user,
                     cheque: this.cheque,
