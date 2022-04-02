@@ -6,6 +6,7 @@
   background-size: 17%;
   box-shadow: inset 0 0 3em 0 #0000005e;
   text-align: left;
+  min-width: 800px;
 
   .hand-written {
     font-family: "AlexBrush-Regular";
@@ -46,7 +47,7 @@
     &__right {
       display: grid;
       justify-content: end;
-      grid-template-columns: auto 55% 15%;
+      grid-template-columns: auto auto 15%;
     }
 
     .header__date {
